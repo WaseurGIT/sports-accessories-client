@@ -15,12 +15,14 @@ const Home = () => {
           <div key={product._id} className="flex justify-center">
             <div className="card bg-base-100 w-full max-w-sm shadow-md">
               <figure className="px-6 pt-6">
-                <img src={product.photo} alt="Shoes" className="rounded-xl h-60 object-cover" />
+                <img
+                  src={product.photo}
+                  alt="Shoes"
+                  className="rounded-xl h-60 object-cover"
+                />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title text-xl font-bold">
-                  {product.name}
-                </h2>
+                <h2 className="card-title text-xl font-bold">{product.name}</h2>
                 <p className="text-lg">
                   <span className="font-semibold">Price: </span>
                   {product.price}
@@ -36,7 +38,7 @@ const Home = () => {
         ))}
       </div>
       <Link to="/products" className="w-full flex justify-center">
-        <button className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 max-w-[280px] my-5 bg-green-400 hover:border-2 text-white border-green-400 px-4 py-2 rounded-md transition duration-300">
+        <button className="btn w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 max-w-[280px] my-5 bg-green-400 hover:border-2 text-white border-green-400 px-4 py-2 rounded-md transition duration-300">
           More Products
         </button>
       </Link>
