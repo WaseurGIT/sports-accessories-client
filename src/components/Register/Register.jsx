@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -14,11 +14,11 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(name, email, password);
+    // console.log(name, email, password);
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         const newUser = { name, email };
 

@@ -1,7 +1,9 @@
+
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const product = useLoaderData();
+
 
   const navigate = useNavigate();
   const handleGoBack = () => {

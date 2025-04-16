@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { FcViewDetails } from "react-icons/fc";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Product = ({ product, products, setProducts }) => {
+  const { user } = useContext(AuthContext);
   const { _id, name, price, quantity, details, photo } = product;
 
   const handleDeleteProduct = (id) => {
@@ -58,17 +61,21 @@ const Product = ({ product, products, setProducts }) => {
               <FcViewDetails></FcViewDetails>
             </button>
           </Link>
-          <Link to={`/updateProduct/${product._id}`}>
-            <button className="btn btn-ghost text-2xl border-2 text-blue-500 border-blue-500">
-              <MdModeEdit></MdModeEdit>
-            </button>
-          </Link>
-          <button
-            onClick={() => handleDeleteProduct(product._id)}
-            className="btn btn-ghost border-2 border-red-500 text-red-600 text-2xl"
-          >
-            <MdDelete></MdDelete>
-          </button>
+          {user && (
+            <>
+              <Link to={`/updateProduct/${product._id}`}>
+                <button className="btn btn-ghost text-2xl border-2 text-blue-500 border-blue-500">
+                  <MdModeEdit></MdModeEdit>
+                </button>
+              </Link>
+              <button
+                onClick={() => handleDeleteProduct(product._id)}
+                className="btn btn-ghost border-2 border-red-500 text-red-600 text-2xl"
+              >
+                <MdDelete></MdDelete>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

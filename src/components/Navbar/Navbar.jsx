@@ -1,6 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
+  const handleSignOutUser = () => {
+    signOutUser()
+      .then((result) => {
+        console.log("user logged out successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   const links = (
     <>
       <li className="font-bold hover:text-white">
@@ -9,15 +23,29 @@ const NavBar = () => {
       <li className="font-bold hover:text-white">
         <NavLink to="/products">Products</NavLink>
       </li>
-      <li className="font-bold hover:text-white">
+      {/* <li className="font-bold hover:text-white">
         <NavLink to="/login">Login</NavLink>
-      </li>
-      <li className="font-bold hover:text-white">
-        <NavLink to="/addProduct">Add Product</NavLink>
-      </li>
-      <li className="font-bold hover:text-white">
-        <NavLink to="/users">Users</NavLink>
-      </li>
+      </li> */}
+      {user ? (
+        <>
+          <li className="font-bold hover:text-white">
+            <NavLink to="/addProduct">Add Product</NavLink>
+          </li>
+          <li className="font-bold hover:text-white">
+            <NavLink to="/users">Users</NavLink>
+          </li>
+          <li className="font-bold hover:text-white">
+            <button onClick={handleSignOutUser}>Sign Out</button>
+          </li>
+        </>
+      ) : (
+        <li className="font-bold hover:text-white">
+          <NavLink to="/login">Login</NavLink>
+        </li>
+        // <li className="font-bold hover:text-white">
+        //   <button onClick={handleSignOutUser}>Sign Out</button>
+        // </li>
+      )}
     </>
   );
 
@@ -49,7 +77,9 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Sports Accessories</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Sports <span className="text-orange-600 mr-[-5px]">A</span>ccessories
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
